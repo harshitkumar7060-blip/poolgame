@@ -307,9 +307,7 @@ else:
     if not players:
         st.info("🎱 Add players above to get started!")
     else:
-        sorted_players = sorted(players.items(), key=lambda x: x[1], reverse=True)
-
-        for i, (name, score) in enumerate(sorted_players):
+        for i, (name, score) in enumerate(players.items()):
             rank = "👑" if i == 0 and len(players) > 1 else f"{i+1}"
             # columns: name | amt input | + | - | score | del
             c_name, c_amt, c_add, c_sub, c_score, c_del = st.columns([2.8, 1.8, 0.8, 0.8, 1.2, 0.8])
