@@ -308,12 +308,11 @@ else:
         st.info("🎱 Add players above to get started!")
     else:
         for i, (name, score) in enumerate(players.items()):
-            rank = "👑" if i == 0 and len(players) > 1 else f"{i+1}"
             # columns: name | amt input | + | - | score | del
             c_name, c_amt, c_add, c_sub, c_score, c_del = st.columns([2.8, 1.8, 0.8, 0.8, 1.2, 0.8])
 
             with c_name:
-                st.markdown(f'<div class="p-name">{rank} {name}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="p-name">{name}</div>', unsafe_allow_html=True)
 
             with c_amt:
                 amt = st.number_input(
