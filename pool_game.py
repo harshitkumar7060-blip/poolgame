@@ -9,10 +9,19 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ── Shared state ─────────────────────────────────────────────────────────────
-if "rooms" not in st.__dict__:
-    st.__dict__["rooms"] = {}
-rooms = st.__dict__["rooms"]
+# ── Shared state ─────────────────────────────────────────────────────────────DATA_FILE = "rooms_data.json"
+def load_rooms():
+   if os.path.exists(DATA_FILE):
+       try:
+           with open(DATA_FILE, "r") as f:
+               return json.load(f)
+       except Exception:
+           return {}
+   return {}
+def save_rooms(rooms_data):
+   with open(DATA_FILE, "w") as f:
+       json.dump(rooms_data, f)
+rooms = load_rooms()
 
 # ── CSS ──────────────────────────────────────────────────────────────────────
 st.markdown("""
