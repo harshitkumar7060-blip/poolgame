@@ -11,7 +11,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ── Shared state ─────────────────────────────────────────────────────────────DATA_FILE = "rooms_data.json"
+# ── Shared state ─────────────────────────────────────────────────────────────
+DATA_FILE = "rooms_data.json"
 def load_rooms():
    if os.path.exists(DATA_FILE):
        try:
