@@ -246,6 +246,7 @@ if "room_id" not in st.session_state:
             if st.form_submit_button("🎱 Create Room") and room_name.strip():
                 rid = gen_id()
                 rooms[rid] = {"name": room_name.strip(), "players": {}}
+                save_rooms(rooms)
                 st.session_state.room_id = rid
                 st.rerun()
 
@@ -310,6 +311,7 @@ else:
             name = new_name.strip()
             if name not in players:
                 players[name] = 0
+                save_rooms(rooms)
             st.rerun()
 
     # ── Player rows — one line each ──
@@ -333,12 +335,14 @@ else:
                 if st.button("➕", key=f"add_{name}", use_container_width=True):
                     if amt > 0:
                         players[name] += amt
+                        save_rooms(rooms)
                         st.rerun()
 
             with c_sub:
                 if st.button("➖", key=f"sub_{name}", use_container_width=True):
                     if amt > 0:
                         players[name] -= amt
+                        save_rooms(rooms)
                         st.rerun()
 
             with c_score:
@@ -347,6 +351,7 @@ else:
             with c_del:
                 if st.button("🗑", key=f"del_{name}", use_container_width=True):
                     del players[name]
+                    save_rooms(rooms)
                     st.rerun()
 
     st.divider()
